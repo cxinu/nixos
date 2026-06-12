@@ -10,12 +10,25 @@ in
   home.username = "cxinu";
   home.homeDirectory = "/home/cxinu";
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+  };
+
   #  env session variables
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
   };
 
   # no root required
