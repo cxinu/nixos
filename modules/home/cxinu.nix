@@ -32,17 +32,19 @@ in
     direnv
     ripgrep
     fzf
+    tree
     duf
     ncdu
-    kitty
+    tmux
+    fastfetch
     lazygit
     ranger
-    tmux
-    tree
     caelestia
     zathura
+    kitty
     vesktop
     zen-browser
+    telegram-desktop
   ];
 
   # binary configs

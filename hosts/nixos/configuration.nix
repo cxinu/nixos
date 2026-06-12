@@ -38,6 +38,16 @@
     xwayland.enable = true;
   };
 
+  # fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+  fonts.fontconfig = {
+    defaultFonts = {
+      monospace = [ "JetBrainsMono Nerd Font" ];
+    };
+  };
+
   users.users.cxinu = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" ];
