@@ -5,8 +5,11 @@ let
     withCli = true;
   };
   zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in
 {
+  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
+
   home.username = "cxinu";
   home.homeDirectory = "/home/cxinu";
 
@@ -16,14 +19,6 @@ in
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
     size = 24;
-  };
-
-  #  env session variables
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   wayland.windowManager.hyprland = {
@@ -64,7 +59,6 @@ in
 
     # terminal
     btop
-    direnv
     ripgrep
     fzf
     tree
@@ -74,6 +68,7 @@ in
     fastfetch
     lazygit
     ranger
+    bluetui
 
     # gui
     caelestia
@@ -84,6 +79,7 @@ in
     zen-browser
     telegram-desktop
     zathura
+    proton-vpn
   ];
 
   programs.starship = {
@@ -91,5 +87,37 @@ in
     enableFishIntegration = true;
   };
 
-  home.stateVersion = "26.11";
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "cxinu";
+        email = "cxinu.main@protonmail.com";
+      };
+      init.defaultBranch = "master";
+    };
+  };
+
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+      beautifulLyrics
+    ];
+    enabledCustomApps = with spicePkgs.apps; [
+      newReleases
+      lyricsPlus
+    ];
+    theme = spicePkgs.themes.defaultDynamic;
+    colorScheme = "Dark-Base";
+  };
+
+  home.stateVersion = "26.05";
 }

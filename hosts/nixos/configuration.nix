@@ -35,6 +35,7 @@
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
 
@@ -55,7 +56,27 @@
   };
   programs.fish.enable = true;
 
+  # bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
+
   # nvidia
+  environment.variables = {
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NIXOS_OZONE_WL = "1";
+  };
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -67,13 +88,34 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  # display manager
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --cmd 'uwsm start hyprland-uwsm.desktop'";
+        user = "greeter";
+      };
+    };
+  };
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
   # base packages
   environment.systemPackages = with pkgs; [
     git
     wget
     curl
     neovim
+    sddm-astronaut
   ];
 
-  system.stateVersion = "26.11";
+  system.stateVersion = "26.05";
 }
