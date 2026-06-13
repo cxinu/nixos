@@ -58,7 +58,6 @@ in
     rustc
 
     # terminal
-    btop
     ripgrep
     fzf
     tree
@@ -69,6 +68,7 @@ in
     lazygit
     ranger
     bluetui
+    nvtopPackages.full
 
     # gui
     caelestia
@@ -117,6 +117,17 @@ in
     ];
     theme = spicePkgs.themes.defaultDynamic;
     colorScheme = "Dark-Base";
+  };
+
+  programs.btop = {
+    enable = true;
+    package = pkgs.btop.override {
+      cudaSupport = true;
+      rocmSupport = true;
+    };
+    settings = {
+      shown_boxes = "cpu mem net proc gpu0";
+    };
   };
 
   home.stateVersion = "26.05";
