@@ -29,6 +29,8 @@
   # audio
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
   services.libinput.enable = true;
@@ -71,7 +73,7 @@
     };
   };
 
-  # nvidia
+  # gpu
   environment.variables = {
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
@@ -120,14 +122,30 @@
     TTYVTDisallocate = true;
   };
 
-  # base packages
   environment.systemPackages = with pkgs; [
+    # base packages
     git
     wget
     curl
     neovim
-    sddm-astronaut
+
+    # linux gaming
+    mangohud
+    protonup-ng
+    lutris
+    heroic
+    wineWow64Packages.stagingFull
+    winetricks
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamemode.enable = true;
 
   system.stateVersion = "26.05";
 }
