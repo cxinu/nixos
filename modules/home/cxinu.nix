@@ -31,6 +31,27 @@ in
     systemd.enable = false;
   };
 
+  gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
+
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
   # no root required
   home.packages = with pkgs; [
     # dev
@@ -41,6 +62,7 @@ in
     cargo
     rustc
 
+    # terminal
     btop
     direnv
     ripgrep
@@ -52,16 +74,17 @@ in
     fastfetch
     lazygit
     ranger
+
+    # gui
     caelestia
-    zathura
     kitty
+    thunar
+    hyprshot
     vesktop
     zen-browser
     telegram-desktop
+    zathura
   ];
-
-  # binary configs
-  programs.firefox.enable = true;
 
   programs.starship = {
     enable = true;
