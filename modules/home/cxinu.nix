@@ -69,6 +69,7 @@ in
     ranger
     bluetui
     nvtopPackages.full
+    github-cli
 
     # gui
     caelestia
@@ -100,6 +101,23 @@ in
         email = "cxinu.main@protonmail.com";
       };
       init.defaultBranch = "master";
+      gpg = {
+        format = "ssh";
+      };
+    };
+    signing = {
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZi97nUZxJnEYl5ZgyxFOW5DwDW4RN/ZXMG3O8MgkzD cxinu.main@protonmail.com";
+      signByDefault = true;
+    };
+  };
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings = {
+      "*" = {
+        addKeysToAgent = "yes";
+      };
     };
   };
 
@@ -129,6 +147,8 @@ in
       shown_boxes = "cpu mem net proc gpu0";
     };
   };
+
+  programs.mpv.enable = true;
 
   home.stateVersion = "26.05";
 }

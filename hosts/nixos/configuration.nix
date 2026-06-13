@@ -147,5 +147,13 @@
 
   programs.gamemode.enable = true;
 
+  programs.gpu-screen-recorder.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
+  };
+
   system.stateVersion = "26.05";
 }
