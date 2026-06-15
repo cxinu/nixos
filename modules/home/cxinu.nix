@@ -13,6 +13,10 @@ in
   home.username = "cxinu";
   home.homeDirectory = "/home/cxinu";
 
+  home.sessionVariables = {
+    QS_ICON_THEME = "Papirus-Dark";
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
@@ -24,6 +28,12 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "adwaita";
   };
 
   gtk = {
@@ -47,13 +57,21 @@ in
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ];
+  };
+
   # no root required
   home.packages = with pkgs; [
     # dev
     gcc
+    gnumake
     go
     python3
     micromamba
+    uv
     cargo
     rustc
 
@@ -81,6 +99,9 @@ in
     telegram-desktop
     zathura
     proton-vpn
+    qbittorrent
+    obsidian
+    krita
   ];
 
   programs.starship = {
@@ -144,7 +165,7 @@ in
       rocmSupport = true;
     };
     settings = {
-      shown_boxes = "cpu mem net proc gpu0";
+      shown_boxes = "cpu mem net proc";
     };
   };
 

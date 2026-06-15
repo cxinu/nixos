@@ -3,8 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     mangohud
-    protonup-ng
-    lutris
+    protonplus
     heroic
     wineWow64Packages.stagingFull
     winetricks
