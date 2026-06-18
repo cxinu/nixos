@@ -74,6 +74,7 @@ in
     uv
     cargo
     rustc
+    nodejs # unfortunately
 
     # terminal
     ripgrep
@@ -88,6 +89,8 @@ in
     bluetui
     nvtopPackages.full
     github-cli
+    typst
+    pandoc
 
     # gui
     caelestia

@@ -44,6 +44,7 @@
     wget
     curl
     neovim
+    lm_sensors
   ];
 
   programs.gnupg.agent = {
