@@ -10,6 +10,26 @@
   };
   services.libinput.enable = true;
 
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  services.tumbler.enable = true;
+
+  # # link thumbnailer desktop files so tumbler finds them
+  environment.pathsToLink = [ "/share/thumbnailers" ];
+
+  # thumbnailer binaries
+  environment.systemPackages = with pkgs; [
+    gdk-pixbuf # Images
+    evince # PDFs (evince-thumbnailer)
+    ffmpegthumbnailer # Videos
+  ];
+
+  # compositor
   programs.hyprland = {
     enable = true;
     withUWSM = true;

@@ -30,6 +30,12 @@
 
   nixpkgs.config.allowUnfree = true;
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    openssl
+    curl
+  ];
 
   users.users.cxinu = {
     isNormalUser = true;
@@ -45,6 +51,7 @@
     curl
     neovim
     lm_sensors
+    openssl
   ];
 
   programs.gnupg.agent = {

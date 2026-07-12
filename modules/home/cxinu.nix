@@ -6,6 +6,7 @@ let
   };
   zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+  jai = pkgs.buildFHSEnv { name = "jai"; runScript = "/home/cxinu/opt/jai/bin/jai-linux"; };
 in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
@@ -75,6 +76,8 @@ in
     cargo
     rustc
     nodejs # unfortunately
+    jai
+    cudatoolkit
 
     # terminal
     ripgrep
@@ -91,13 +94,18 @@ in
     github-cli
     typst
     pandoc
+    unzip
+    woomer
+    playerctl
+    ffmpegthumbnailer
+    poppler-utils
 
     # gui
     caelestia
     kitty
-    thunar
     hyprshot
     vesktop
+    discord
     zen-browser
     telegram-desktop
     zathura
@@ -105,6 +113,8 @@ in
     qbittorrent
     obsidian
     krita
+    libreoffice
+    brave
   ];
 
   programs.starship = {

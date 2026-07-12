@@ -5,6 +5,7 @@
     mangohud
     protonplus
     heroic
+    bottles
     wineWow64Packages.stagingFull
     winetricks
   ];
