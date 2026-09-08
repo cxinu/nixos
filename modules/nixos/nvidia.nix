@@ -20,11 +20,11 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
-      # sync.enable = true;
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+      sync.enable = true;
+      # offload = {
+      #   enable = true;
+      #   enableOffloadCmd = true;
+      # };
 
       # lspci
       amdgpuBusId = "PCI:5:0:0";

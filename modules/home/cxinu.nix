@@ -99,6 +99,7 @@ in
     playerctl
     ffmpegthumbnailer
     poppler-utils
+    tokei
 
     # gui
     caelestia
@@ -115,6 +116,8 @@ in
     krita
     libreoffice
     brave
+    osu-lazer-bin
+    xournalpp
   ];
 
   programs.starship = {
