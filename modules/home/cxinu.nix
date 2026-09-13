@@ -116,8 +116,9 @@ in
     krita
     libreoffice
     brave
-    osu-lazer-bin
     xournalpp
+    teamviewer
+    osu-lazer-bin
   ];
 
   programs.starship = {

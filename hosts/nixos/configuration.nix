@@ -20,6 +20,7 @@
 
   time.timeZone = "Asia/Kolkata";
   hardware.opentabletdriver.enable = true;
+  hardware.graphics.enable = true;
 
   # nix daemon
   nix.settings = {
@@ -33,6 +34,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
@@ -50,19 +52,24 @@
     libayatana-appindicator
     openssl
     dbus
-  ];
 
-  users.users.cxinu = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "docker" ];
-    shell = pkgs.fish;
-  };
-  programs.fish.enable = true;
+    libX11
+    libXcursor
+    libXrandr
+    libXinerama
+    libXi
+    libGL
+    libglvnd
+    wayland
+    libxkbcommon
+    raylib
+  ];
 
   environment.systemPackages = with pkgs; [
     # base packages
     git
     file
+    exiftool
     wget
     curl
     clang
@@ -81,12 +88,20 @@
     wayland
     libxkbcommon
     libGL
+    libglvnd
     libX11
     libXcursor
     libXrandr
     libXinerama
     libXi
   ];
+
+  users.users.cxinu = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" ];
+    shell = pkgs.fish;
+  };
+  programs.fish.enable = true;
 
   virtualisation.docker = {
     enable = true;
@@ -98,6 +113,10 @@
     enableSSHSupport = true;
     pinentryPackage = pkgs.pinentry-gnome3;
   };
+
+  services.teamviewer.enable = true;
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
 
   system.stateVersion = "26.05";
 }
