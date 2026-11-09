@@ -6,7 +6,7 @@
     protonplus
     heroic
     bottles
-    wineWow64Packages.stagingFull
+    wineWow64Packages.staging
     winetricks
   ];
 

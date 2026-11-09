@@ -9,7 +9,7 @@
   ];
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # grant memory access they say, but to whom?
@@ -41,15 +41,27 @@
     zlib
     curl
 
+    nss
+    nspr
+    gtk3
+    cups
+    expat
+
+    dbus
+    atk
+    at-spi2-core
+    pango
+    cairo
+    mesa
+    libgbm
+    alsa-lib
+
+
     cairo
     pango
-    gtk3
     glib
-    glib-networking
     gdk-pixbuf
     atk
-    webkitgtk_4_1
-    libayatana-appindicator
     openssl
     dbus
 
@@ -58,27 +70,34 @@
     libXrandr
     libXinerama
     libXi
+    libxcb
+    libXcomposite
+    libXdamage
+    libXext
+    libXfixes
+
     libGL
     libglvnd
     wayland
     libxkbcommon
-    raylib
+    alsa-lib
+    libpulseaudio
   ];
 
   environment.systemPackages = with pkgs; [
     # base packages
     git
+    git-lfs
     file
     exiftool
     wget
     curl
     clang
     neovim
-    obs-studio
     libresplit
     lm_sensors
     openssl
-    docker
+    gpu-screen-recorder
     pavucontrol
     gsettings-desktop-schemas
 
@@ -94,6 +113,12 @@
     libXrandr
     libXinerama
     libXi
+
+    # ffmpeg
+    ffmpeg
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+    gst_all_1.gst-plugins-good
   ];
 
   users.users.cxinu = {
@@ -103,20 +128,11 @@
   };
   programs.fish.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = true;
-  };
-
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
     pinentryPackage = pkgs.pinentry-gnome3;
   };
-
-  services.teamviewer.enable = true;
-  programs.appimage.enable = true;
-  programs.appimage.binfmt = true;
 
   system.stateVersion = "26.05";
 }

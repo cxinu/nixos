@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # audio
@@ -22,8 +22,8 @@
   # # link thumbnailer desktop files so tumbler finds them
   environment.pathsToLink = [ "/share/thumbnailers" ];
 
-  # thumbnailer binaries
   environment.systemPackages = with pkgs; [
+    inputs.amane.packages.x86_64-linux.default
     gdk-pixbuf # Images
     evince # PDFs (evince-thumbnailer)
     ffmpegthumbnailer # Videos

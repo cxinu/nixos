@@ -2,7 +2,6 @@
 
 {
   environment.variables = {
-    GBM_BACKEND = "nvidia-drm";
     NIXOS_OZONE_WL = "1";
   };
 
@@ -11,24 +10,14 @@
     enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     open = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    prime = {
-      sync.enable = true;
-      # offload = {
-      #   enable = true;
-      #   enableOffloadCmd = true;
-      # };
-
-      # lspci
-      amdgpuBusId = "PCI:5:0:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
   };
+
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
 }

@@ -19,7 +19,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    amane = {
+      url = "github:MystiaFin/amane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, caelestia-shell, ... }@inputs:

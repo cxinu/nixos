@@ -1,10 +1,10 @@
 { config, pkgs, inputs, ... }:
 
 let
-  caelestia = inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-    withCli = true;
+  caelestia = inputs.caelestia-shell.packages.${pkgs.stdenv.system}.default.override {
+    withCli = false;
   };
-  zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.system}.default;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
   jai = pkgs.buildFHSEnv { name = "jai"; runScript = "/home/cxinu/opt/jai/bin/jai-linux"; };
 in
@@ -19,16 +19,12 @@ in
   };
 
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     x11.enable = true;
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
     size = 24;
-  };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false;
   };
 
   qt = {
@@ -77,7 +73,6 @@ in
     rustc
     nodejs # unfortunately
     jai
-    cudatoolkit
 
     # terminal
     ripgrep
@@ -95,11 +90,13 @@ in
     typst
     pandoc
     unzip
+    unrar
     woomer
     playerctl
     ffmpegthumbnailer
     poppler-utils
     tokei
+    streamlink
 
     # gui
     caelestia
@@ -113,11 +110,11 @@ in
     proton-vpn
     qbittorrent
     obsidian
+    obs-studio
     krita
     libreoffice
     brave
     xournalpp
-    teamviewer
     osu-lazer-bin
   ];
 
