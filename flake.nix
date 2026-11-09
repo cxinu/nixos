@@ -28,6 +28,11 @@
       url = "github:MystiaFin/amane";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    yami = {
+      url = "github:Trendorin/yami";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, caelestia-shell, ... }@inputs:

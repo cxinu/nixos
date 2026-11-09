@@ -9,7 +9,10 @@ let
   jai = pkgs.buildFHSEnv { name = "jai"; runScript = "/home/cxinu/opt/jai/bin/jai-linux"; };
 in
 {
-  imports = [ inputs.spicetify-nix.homeManagerModules.spicetify ];
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.yami.homeManagerModules.default
+  ];
 
   home.username = "cxinu";
   home.homeDirectory = "/home/cxinu";
@@ -181,6 +184,11 @@ in
     settings = {
       shown_boxes = "cpu mem net proc";
     };
+  };
+
+  programs.yami = {
+    enable = true;
+    extraPackages = [ ];
   };
 
   programs.mpv.enable = true;

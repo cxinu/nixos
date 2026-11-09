@@ -1,6 +1,10 @@
 { pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.yami.nixosModules.default
+  ];
+
   # audio
   services.pipewire = {
     enable = true;
@@ -36,6 +40,16 @@
     xwayland.enable = true;
   };
 
+  # Yami desktop
+  programs.yami = {
+    enable = true;
+
+    loginScreen = {
+      enable = true;
+      user = "cxinu";
+    };
+  };
+
   # fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -61,16 +75,6 @@
     };
   };
 
-  # display manager
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --cmd 'uwsm start hyprland-uwsm.desktop'";
-        user = "greeter";
-      };
-    };
-  };
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
     StandardInput = "tty";

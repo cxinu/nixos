@@ -153,6 +153,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix",
+        "yami": "yami",
         "zen-browser": "zen-browser"
       }
     },
@@ -189,6 +190,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "yami": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794091446,
+        "narHash": "sha256-1yV75ZqATV6eQYmw+4oz7w7uqev5JEbOjgLt5i+z/tA=",
+        "owner": "Trendorin",
+        "repo": "yami",
+        "rev": "d9ad69e8d41a51d13cfd521c912a9a0126ac08fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Trendorin",
+        "repo": "yami",
         "type": "github"
       }
     },
